@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="nav-bar">
+    <input type='text' class='search-input' bindtap="goSearch" disabled placeholder='搜索店铺'></input>
+    <a class="search-btn">
+      <icon type="search" size="18" color="#999" />
+    </a>
+  </view>
+</view> -->
+<!-- <swiper indicator-dots="false" style='margin-top:45px' autoplay="true" interval="3000" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="100%" height="150" />
+    </swiper-item>
+  </block>
+</swiper> -->
+<view class="container flex-row" style='display:flex;align-items: stretch;flex-wrap:wrap;justify-content:center;flex-direction:column;height:100%'>
+  <!-- <view class='list'>
+    <image class='head-icon' mode='widthFix' src="http://oxx48atdd.bkt.clouddn.com/gamersky_01origin_01_201612171524159.jpg"></image>
+    <a style="margin-left:10px"></a>
+  </view> -->
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" width="100%"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+  <!-- <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto"></text>
+  </view> -->
+  <view>
+    <view style='text-align: center;margin-top:0'>
+      <image class='head-icon' mode='widthFix' src="../../res/img/indexBack.png"></image>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">扫一扫 自助点餐</text>
+    </view>
+    <view class="usermotto">
+      <text class="subTitle" style='color:#555'>强大的云计算能力，快捷点餐尽在手中</text>
+    </view>
+    <view class="usermotto">
+      <button class="indexBtn" bindtap="goSearch">
+        <image class="scanIcon" src="../../res/img/scan.png"></image> 开始点餐</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,112 @@
+<!--search.wxml-->
+<view class="fix-top" style='background-color:#333;width:100%;z-index:10;' id="topBar">
+  <view class='container' style='padding:3px 0'>
+    <image src="../../res/img/head.jpg" style='width:66px;height:66px;border-radius:4px' mode='center'></image>
+  </view>
+  <view class="text-center">
+    <text class='subFont'>4.9分</text>
+    <text class='subFont'> | </text>
+    <text class='subFont'>人均25元</text>
+    <text class='subFont'> | </text>
+    <text class='subFont'>金牌商家</text>
+  </view>
+  <view class="text-center" style='padding-bottom:6px'>
+    <image class="positionIcon" src="../../res/img/position.png"></image>
+    <text class='subFont' style='padding-left:6px'>XX市XX区XX街XX号</text>
+  </view>
+  <view class="flex-row" style="display: flex;background-color:#fff">
+    <view class="flex-view-item tabs" bindtap="goTabs" id="0">
+      <text class="{{current==0?'active':''}}">菜单</text>
+    </view>
+    <view class="flex-view-item tabs" bindtap="goTabs" id="1">
+      <text class="{{current==1?'active':''}}">评价</text>
+    </view>
+  </view>
+</view>
+<swiper indicator-dots="{{dots}}" autoplay="{{autoPlay}}" duration="100" style='z-index:0;padding-top:{{paddingTop}};padding-bottom:50px;height:100%;box-sizing:border-box;' current="{{current}}" bindchange="bindchange">
+  <block>
+    <swiper-item>
+      <view class='flex-row' style='display:flex;align-items:stretch;height:100%;border-top:1rpx solid #e0e0e0'>
+        <scroll-view scroll-y style='flex:1;height:100%' class="verticTabs">
+          <view wx:for="{{foodClass}}" class="text-center {{activeItem==item?'active':''}}" style='padding:12px 0;border-bottom:1rpx solid #e0e0e0;background-color:#eee' bindtap="changeTabs" id="{{item}}">
+            <text style='font-size:12px;'>{{item}}</text>
+          </view>
+        </scroll-view>
+        <scroll-view scroll-y style='flex:4;height:100%'>
+          <view style='padding:4px 12px;background-color:#eee;border-left:4px solid #e0e0e0'>
+            <text style='font-size:12px'>{{activeItem}}</text>
+          </view>
+          <view wx:for="{{foods[activeItem]}}" class='flex-row' style='display:flex;border-bottom:1rpx solid #f0f0f0'>
+            <view class='text-center' style='flex:1;padding:12px'>
+              <image src="../../res/img/head.jpg" style='width:55px;height:55px;margin-top:10px'></image>
+            </view>
+            <view style='flex:4;padding:12px 12px 12px 0'>
+              <view>
+                <text class='blod-text' style='font-size:14px'>{{item.name}}</text>
+              </view>
+              <view>
+                <text style="font-size:12px">{{item.disc}}</text>
+              </view>
+              <view>
+                <text style='font-size:12px;color:orangered;'>￥</text>
+                <text class="priceFont">{{item.price}}</text>
+                <view class='badge'>
+                  <image class='foodBtn {{item.num==0?"hidden":""}}' style='' id='{{item.name}}' src="../../res/img/minus.png" bindtap="minusFood"></image>
+                  <text class='{{item.num==0?"hidden":""}}' style='font-size:12px;padding:0 6px'>{{item.num}}</text>
+                  <image class='foodBtn' bindtap="addFood" id="{{item.name}}" src="../../res/img/add.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </swiper-item>
+  </block>
+  <block>
+    <swiper-item>
+      <text>2</text>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="shopFoodsBar {{shopFoodsBarFlag==true?'hidden':''}}">
+  <view class="flex-row" style='display:flex;padding-bottom:6px'>
+    <view style='flex:1'>
+      <text class='text-2 text-b text-s16' style='border-bottom:2px solid #09f;padding-bottom:2px'>购物车</text>
+    </view>
+    <view class='text-right' style='flex:1'>
+      <text class='text-2 text-s14' bindtap='clearShopCar'>清除</text>
+    </view>
+  </view>
+  <scroll-view scroll-y style='height:100%;max-height:200px'>
+    <view class='flex-row' wx:for="{{addFoods}}" style='padding:12px 0;display:flex;border-bottom:1rpx solid #efefef;'>
+      <view style='flex:1'>
+        <text class='text-2 text-s14 text-b'>{{item.name}}</text>
+        <text class='text-2 text-b text-s12'> ×{{item.num}}</text>
+      </view>
+      <view class='text-right text-s14' style='flex:1;color:orangered'>
+        <text>￥</text>
+        <text>{{item.num * item.price}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="shopFoodsMask {{shopFoodsBarFlag==true?'hidden':''}}" bindtap='showShopCar'></view>
+<view class="shopBar flex-row" style='display:flex'>
+  <view style='flex:1;'>
+    <view class="shopCarBody" bindtap='showShopCar'>
+      <image src="{{shopCarSrc}}" class="shopIcon"></image>
+      <view class="badge shopBadge {{shopBadgeFlag==true?'hidden':''}}">
+        <text>{{foodsNum}}</text>
+      </view>
+    </view>
+  </view>
+  <view style='flex:4'>
+    <view class='text-s18 text-b text-3 {{prices==0?"hidden":""}}' style='line-height:50px;padding-left:12px'>
+      <text>￥</text>
+      <text>{{prices}}</text>
+    </view>
+  </view>
+  <view class='text-center subBtn {{prices<15?"":"subBtnActive"}}' style='flex:2;' bindtap='order'>
+    <text>{{prices<15?'15元起单':'下单'}}</text>
+  </view>
+</view>
